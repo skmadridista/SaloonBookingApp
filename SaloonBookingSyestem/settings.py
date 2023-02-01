@@ -140,7 +140,7 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.SessionAuthentication',
         'knox.auth.TokenAuthentication',
     ],
-    # 'DEFAULT_RENDERER_CLASSES':('rest_framework.renderers.JSONRenderer')
+    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
 }
 
  

@@ -11,8 +11,8 @@ from django.contrib.auth import login
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render,HttpResponse
+# from django.contrib.auth.decorators import login_required
 
 # @login_required
 def index(request):
@@ -20,7 +20,7 @@ def index(request):
     services = Service.objects.all()
     bookings = Booking.objects.filter(user=request.user)
     context = {'services': services, 'bookings': bookings}
-    return render(request, 'index.html',context)
+    return HttpResponse("It is working")
 
 
 class LoginAPI(KnoxLoginView):
