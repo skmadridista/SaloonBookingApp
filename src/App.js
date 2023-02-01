@@ -1,30 +1,28 @@
-import './App.css';
-import { useState, useEffect } from "react";
-import axios from "axios";
+import "./App.css";
+
+import ServiceList from "./components/ServiceList";
+import Footer from "./components/Footer";
+import Nav from "./components/Navbar";
+import Home from "./components/Home";
+import Register from "./components/RegisterUser";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import BookingList from "./components/BookingList";
+import LoginForm from "./components/Login";
+
 function App() {
-  const [services, setServices] = useState([])
-  useEffect(()=>{
-    async function getAllStudent(){
-      try {
-        const services = await axios.get("http://127.0.0.1:8000/api/services/")
-        console.log(services.data)
-        setServices(services.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getAllStudent()
-  }, [])
   return (
     <div className="App">
-     <h1>Connect React JS to Django</h1>
-     {
-       services.map((services, i)=>{
-         return (
-           <h2 key={i}>{services.name} {services.price}</h2>
-         )
-       })
-     }
+      <Router>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/services" component={ServiceList} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/bookings" component={BookingList} />
+        </Switch>
+      </Router>
+        <Footer />
     </div>
   );
 }
